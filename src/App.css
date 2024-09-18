@@ -1,38 +1,60 @@
+/* src/App.css */
+
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f2f5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin-bottom: 40px;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 20px;
+}
+
+.chart-container {
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 500px; /* Fixed height for consistency */
+}
+
+/* Make the OrdersPerWeekChart span both columns */
+.chart-container.full-width {
+  grid-column: 1 / -1; /* Span from the first to the last column */
+}
+
+/* Ensure all canvas elements fill their containers */
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .chart-grid {
+    grid-template-columns: 1fr; /* Single column on tablets and smaller devices */
+  }
+
+  .chart-container {
+    height: 400px; /* Adjust height for smaller screens */
+  }
+
+  /* Remove full-width class adjustments on smaller screens */
+  .chart-container.full-width {
+    grid-column: 1 / 2;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (max-width: 480px) {
+  .chart-container {
+    height: 300px; /* Further adjust height for mobile devices */
   }
 }
